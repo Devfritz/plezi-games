@@ -1,57 +1,26 @@
-import { useState } from "react";
-import ExpenseFilter from "./components/expenses/ExpenseFilter";
-import ListExpenses from "./components/expenses/ListExpenses";
-import { ExpenseForm } from "./components/expenses/ExpenseForm";
-
-// import Form from "./components/Form";
-// import ListGroup from "./components/Listgroup";
-
+import { Grid, GridItem, Show } from "@chakra-ui/react";
+import GamesList from "./components/games/fetchGames";
+import Navbar from "./components/Navbar";
 function App() {
-  const expenses = [
-    {
-      id: 1,
-      description: "Expenses for phones",
-      amount: 10000,
-      category: "business",
-    },
-    {
-      id: 2,
-      description: "Expenses for shoes",
-      amount: 1000,
-      category: "business",
-    },
-    {
-      id: 3,
-      description: "Expenses for restaurants",
-      amount: 500,
-      category: "food",
-    },
-  ];
-  const [allExpenses, setAllExpenses] = useState(expenses);
-  const [onSelected, setOnSelected] = useState("");
-
-  const showByCategories = onSelected
-    ? allExpenses.filter((exp) => exp.category === onSelected)
-    : allExpenses;
-
   return (
-    <>
-      <ExpenseForm
-        onSubmit={(expense) =>
-          setAllExpenses([
-            ...allExpenses,
-            { ...expense, id: allExpenses.length + 1 },
-          ])
-        }
-      />
-      <ExpenseFilter onSelected={(category) => setOnSelected(category)} />
-      <ListExpenses
-        allExpense={showByCategories}
-        onDelete={(id) =>
-          setAllExpenses(allExpenses.filter((exp) => exp.id !== id))
-        }
-      />
-    </>
+    <Grid
+      templateAreas={{
+        base: `"nav" "main"`,
+        lg: `"nav nav" "aside main"`,
+      }}
+    >
+      <GridItem area="nav">
+        {/* Navbar */}
+        <Navbar />
+      </GridItem>
+      <Show above="lg">
+        <GridItem area="aside">Aside</GridItem>
+      </Show>
+
+      <GridItem area="main">
+        <GamesList />
+      </GridItem>
+    </Grid>
   );
 }
 
