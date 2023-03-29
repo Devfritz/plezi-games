@@ -1,17 +1,17 @@
 import { useEffect, useState } from "react";
 import apiClient from "../services/api-client";
-import {CanceledError} from 'axios'
+import { CanceledError } from "axios";
+export interface Game {
+  id: number;
+  name: string;
+  background_image: string;
+}
+
+interface FetchGamesResponse {
+  count: number;
+  results: Game[];
+}
 const useGames = () => {
-  interface Game {
-    id: number;
-    name: string;
-  }
-
-  interface FetchGamesResponse {
-    count: number;
-    results: Game[];
-  }
-
   const [resultsListGames, setResultsListGames] = useState<Game[]>([]);
   const [errMessage, setErrorMessage] = useState();
   useEffect(() => {
@@ -22,7 +22,7 @@ const useGames = () => {
         setResultsListGames(res.data.results);
       })
       .catch((err) => {
-		 if(err instanceof CanceledError) return;
+        if (err instanceof CanceledError) return;
         setErrorMessage(err.message);
       });
 
