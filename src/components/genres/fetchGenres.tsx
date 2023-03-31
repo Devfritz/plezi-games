@@ -1,20 +1,27 @@
-import { Divider, Text, VStack } from "@chakra-ui/react";
+import { HStack, Text, Image, Spinner } from "@chakra-ui/react";
 import useGenres from "../../hooks/useGenres";
+import getCroppedImageUrl from "../../services/image-url";
 
 const GenresList = () => {
-  const { data, errMessage } = useGenres();
+  const { data, errMessage, loading } = useGenres();
 
+  if (loading) return <Spinner />;
   return (
     <>
       {errMessage && <Text color="red.500">{errMessage}</Text>}
-      <VStack mt={10} ml={5}>
-        {data.map((genre) => (
-          <>
-            <Text>{genre.name}</Text>
-            <Divider />
-          </>
-        ))}
-      </VStack>
+
+      {data.map((genre) => (
+        <>
+          <HStack justifyContent="start" paddingX={2} mt={5}>
+            <Image
+              src={getCroppedImageUrl(genre.image_background)}
+              boxSize="32px"
+              borderRadius="10px"
+            />
+            <Text fontWeight="600">{genre.name}</Text>
+          </HStack>
+        </>
+      ))}
     </>
   );
 };
