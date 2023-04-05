@@ -1,6 +1,6 @@
 import useData from "./generic data/useData";
 
-interface Genres {
+export interface Genres {
   id: number;
   name: string;
   slug: string;
