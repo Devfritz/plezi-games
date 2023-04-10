@@ -19,12 +19,19 @@ export interface Game {
 }
 const useGames = (
   selectedGenres: Genres | null,
-  selectedPlatform: ListPlatform | null
+  selectedPlatform: ListPlatform | null,
+  selectedSort: string
 ) =>
   useData<Game>(
     "/games",
-    { params: { genres: selectedGenres?.id, platforms: selectedPlatform?.id } },
-    [selectedGenres?.id, selectedPlatform?.id]
+    {
+      params: {
+        genres: selectedGenres?.id,
+        platforms: selectedPlatform?.id,
+        ordering: selectedSort,
+      },
+    },
+    [selectedGenres?.id, selectedPlatform?.id, selectedSort]
   );
 
 export default useGames;

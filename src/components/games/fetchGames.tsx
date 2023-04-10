@@ -7,10 +7,15 @@ import GameCard from "../GameCard/GameCard";
 interface Props {
   selectGenre: Genres | null;
   selectedPlatform: ListPlatform | null;
+  selectedSort: string;
 }
 
-const GamesList = ({ selectGenre, selectedPlatform }: Props) => {
-  const { data, errMessage } = useGames(selectGenre, selectedPlatform);
+const GamesList = ({ selectGenre, selectedPlatform, selectedSort }: Props) => {
+  const { data, errMessage } = useGames(
+    selectGenre,
+    selectedPlatform,
+    selectedSort
+  );
   return (
     <>
       {errMessage && <Text color="red.500">{errMessage}</Text>}

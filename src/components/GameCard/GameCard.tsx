@@ -24,7 +24,7 @@ const GameCard = ({ game }: PropGame) => {
           <ListPlatFormIcon
             platforms={game.parent_platforms.map((p) => p.platform)}
           />
-          <MetaCritic metacritic={game.metacritic} />
+          <MetaCritic metacritic={game.metacritic ? game.metacritic : 0} />
         </HStack>
       </CardBody>
     </Card>
