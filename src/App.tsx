@@ -1,4 +1,4 @@
-import { Flex, Grid, GridItem, Show } from "@chakra-ui/react";
+import { Flex, Grid, GridItem, HStack, Show } from "@chakra-ui/react";
 import GamesList from "./components/games/fetchGames";
 import GenresList from "./components/genres/fetchGenres";
 import Navbar from "./components/Navbar";
@@ -32,7 +32,7 @@ function App() {
         </GridItem>
       </Show>
       <GridItem area="main">
-        <Flex gap="2">
+        <Flex gap="2" marginLeft={10}>
           <PlatformSelector
             onSelectedPLatform={(platform) => setSelectPlatform(platform)}
             selectedPlatform={selectPlatform}

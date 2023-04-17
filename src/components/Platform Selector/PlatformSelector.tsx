@@ -11,12 +11,15 @@ const PlatformSelector = ({ onSelectedPLatform, selectedPlatform }: Props) => {
   const { data } = usePlatforms();
   return (
     <Menu>
-      <MenuButton as={Button} rigthIcon={<BsChevronDown />}>
+      <MenuButton as={Button} rigthicon={<BsChevronDown />}>
         {selectedPlatform?.name || "Platform"}
       </MenuButton>
       <MenuList>
         {data.map((platform) => (
-          <MenuItem onClick={() => onSelectedPLatform(platform)}>
+          <MenuItem
+            onClick={() => onSelectedPLatform(platform)}
+            key={platform.id}
+          >
             {platform.name}
           </MenuItem>
         ))}

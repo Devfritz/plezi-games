@@ -1,6 +1,5 @@
 import notImage from "../assets/Image_not_available.png";
 const getCroppedImageUrl = (url: string) => {
-  console.log(url);
   if (!url) return notImage;
   const target = "media/";
   const index = url.indexOf(target) + target.length;
